@@ -18,8 +18,9 @@ const originalButton = document.getElementById('orig');
 
 playButton.addEventListener('click', function() {
     video.play();
-    volumeDisplay.textContent = Math.round(video.volume * 100) + "%"; 
     console.log("Play Video");
+    let currentVolume = Math.round(video.volume * 100);
+    volumeDisplay.textContent = currentVolume + "%";
 });
 
 pauseButton.addEventListener('click', function() {
