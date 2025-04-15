@@ -18,6 +18,7 @@ const originalButton = document.getElementById('orig');
 
 playButton.addEventListener('click', function() {
     video.play();
+    volumeDisplay.textContent = Math.round(video.volume * 100) + "%"; 
     console.log("Play Video");
 });
 
@@ -44,16 +45,15 @@ skipButton.addEventListener('click', function() {
     console.log("Skip Video");
 });
 
-muteButton.addEventListener('click', function () { 
-    // video.muted = true;
-    console.log("unMute Video");
-    if (video.muted == true) {
-        console.log("video unmuted");    
+muteButton.addEventListener('click', function () {
+    if (video.muted) {
         video.muted = false;
-    }
-    else {
+        muteButton.textContent = "Mute"; 
+        console.log("Unmuted Video");
+    } else {
         video.muted = true;
-        console.log("video muted");    
+        muteButton.textContent = "Unmute"; 
+        console.log("Muted Video");
     }
 });
 
@@ -61,7 +61,8 @@ muteButton.addEventListener('click', function () {
 volSlider.addEventListener('input', function () {
     let volumeValue = volSlider.value;
     video.volume = volumeValue / 100;
-    volumeDisplay.textContent = volumeValue + "%";
+    volumeDisplay.textContent = Math.round(video.volume * 100) + "%";
+    volSlider.value = video.volume * 100;
     console.log('Volume set to', volumeValue + "%");
 });
 
